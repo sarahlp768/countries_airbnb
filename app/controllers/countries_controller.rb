@@ -1,7 +1,10 @@
 class CountriesController < ApplicationController
 
   def index
-    @countries = Celebrity.all
+    @countries = Country.all
+    if params[:query].present?
+      @countries = Country.search_by(params[:query])
+    end
   end
 
   def show
